@@ -29,23 +29,6 @@
               <div class="col">
                   <h1 class="text-center mb-5">Lista de Produtos</h1>
                   <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <?php foreach($produtos as $produto):?>
-                      <div class="col">
-                          <div class="card">
-                              <a href="views/detalhes_produto.php?id=<?php echo $produto->getId(); ?>" class=""> 
-                                  <img src="<?php echo $produto->getImagem(); ?>" class="card-img-top" 
-                                  alt="<?php echo htmlspecialchars($produto->getNome()); ?>">
-                              </a>
-                              <div class="card-body">
-                                  <h5 class="card-title"><?php echo htmlspecialchars($produto->getNome()); ?></h5>
-                                  <p class="card-text"><?php echo htmlspecialchars($produto->getDescricao()); ?></p>
-                                  <p class="card-text"><?php echo htmlspecialchars($produto->getValor()); ?></p>
-                                  <a href="views/detalhes_produto.php?id=<?php echo $produto->getId(); ?>"
-                                      class="btn btn-primary">Detalhes</a>
-                              </div>
-                          </div>
-                      </div>
-                    <?php endforeach; ?>
                   </div>
               </div>
           </div>
