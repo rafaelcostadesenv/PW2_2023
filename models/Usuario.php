@@ -1,20 +1,33 @@
 <?php
 
-
-
 class Usuario {
     private $id;
+    private $nome;
     private $login;
     private $senha;
-    private $nome;
 
-    public function __construct($id, $login, $senha, $nome){
+    public function __construct($id, $nome, $login, $senha){
         $this->id = $id;
+        $this->nome = $nome;
         $this->login = $login;
         $this->senha = $senha;
-        $this->nome = $nome;
+    }
+   
+    public function getNome()
+    {
+        return $this->nome;
     }
 
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+        return $this;
+    }
+
+
+    /**
+     * Get the value of id
+     */ 
     public function getId()
     {
         return $this->id;
@@ -31,28 +44,6 @@ class Usuario {
 
         return $this;
     }
-
-    /**
-     * Get the value of nome
-     */ 
-    public function getNome()
-    {
-        return $this->nome;
-    }
-
-    /**
-     * Set the value of nome
-     *
-     * @return  self
-     */ 
-    public function setNome($nome)
-    {
-        $this->nome = $nome;
-
-        return $this;
-    }
-
-    
 
     /**
      * Get the value of login
@@ -74,24 +65,24 @@ class Usuario {
         return $this;
     }
 
-        /**
-         * Get the value of senha
-         */ 
-        public function getSenha()
-        {
-                return $this->senha;
-        }
+    /**
+     * Get the value of senha
+     */ 
+    public function getSenha()
+    {
+        return $this->senha;
+    }
 
-        /**
-         * Set the value of senha
-         *
-         * @return  self
-         */ 
-        public function setSenha($senha)
-        {
-                $this->senha = $senha;
+    /**
+     * Set the value of senha
+     *
+     * @return  self
+     */ 
+    public function setSenha($senha)
+    {
+        $this->senha = $senha;
 
-                return $this;
-        }
+        return $this;
+    }
 }
 

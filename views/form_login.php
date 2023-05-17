@@ -1,49 +1,48 @@
+<?php
+    // Inicia a sessão
+    session_start();
+    
+    if(isset($_POST["usuario"])){
+        $_SESSION["usuario"] = $_POST["usuario"];
+        header("Location: ../index.php");
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link href="../css/form_login.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Login</title>
+    <!-- Área para os Scripts CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Título da Página -->
 </head>
 <body>
-    <!-- Conteúdo do Body -->
-
-    <div id="login">
-        <h3 class="text-center text-white pt-5">Login form</h3>
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="" method="post">
-                            <h3 class="text-center text-info">Login</h3>
-                            <div class="form-group">
-                                <label for="username" class="text-info">Username:</label><br>
-                                <input type="text" name="username" id="username" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-                            </div>
-                            <div id="register-link" class="text-right">
-                                <a href="#" class="text-info">Register here</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Área para os Scripts Java Scripts -->
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/scripts.js"></script> 
+	<div class="container">
+		<div class="row justify-content-center mt-5">
+			<div class="col-md-4">
+				<form method="POST">
+					<div class="mb-3">
+						<label for="usuario" class="form-label">Usuário</label>
+						<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Digite seu usuário">
+					</div>
+					<div class="mb-3">
+						<label for="senha" class="form-label">Senha</label>
+						<input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
+					</div>
+					<button type="submit" class="btn btn-primary">Login</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Área para os Scripts Java Scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
-
