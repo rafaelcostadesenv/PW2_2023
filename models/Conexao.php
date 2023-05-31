@@ -4,7 +4,7 @@ class Conexao {
     private static $conexao = null;
     private static $host = "localhost";
     private static $usuario = "root";
-    private static $senha = "Rscosta2408";
+    private static $senha = "123";
     private static $banco = "pw2_2023";
 
     private function __construct() {}
