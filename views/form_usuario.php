@@ -67,51 +67,8 @@ if (isset($_POST["usuario"]) && isset($_POST["senha"])) {
         </div>
         <input type="submit" class="btn btn-primary" id="salvar" name="salvar" value="Salvar">
         <a href="form_login.php" class="btn btn-secondary btn-danger">Voltar</a>
-        <button class="btn btn-warning" onclick="">Alterar</button>
-        <a type="submit" class="btn btn-success" onclick="limpaCampo()">Novo</a>
     </form>
 </div>
-
-<div class="container mt-4">
-    <h2>Usuários cadastrados</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Usuário</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($usuarios as $usuario): ?>
-                <tr>
-                    <td><?php echo $usuario->getId(); ?></td>
-                    <td><?php echo $usuario->getNome(); ?></td>
-                    <td><?php echo $usuario->getLogin(); ?></td>
-                    <td>
-                        <button class="btn btn-info" onclick="selecionarUsuario(<?php echo $usuario->getId(); ?>)">Selecionar</button>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
-
-<script>
-    function selecionarUsuario(id, nome, usuario, senha) {
-        // Preencher os campos do formulário com os dados do usuário selecionado
-        document.getElementById("nome").value = nome;
-        document.getElementById("usuario").value = usuario;
-        document.getElementById("senha").value = senha;
-    }
-</script>
-
-
-
-
-
-
 
 <!-- Área para os Scripts Java Scripts -->
 	<script src="js/jquery.min.js"></script>

@@ -1,6 +1,6 @@
 <?php
-require_once "models/Categoria.php";
-require_once "models/Conexao.php";
+require_once "C:/xampp/htdocs/pw2_2023-master/models/Categoria.php";
+require_once "C:/xampp/htdocs/pw2_2023-master/models/Conexao.php";
 
 class CategoriaController
 {

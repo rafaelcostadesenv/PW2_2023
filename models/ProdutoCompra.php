@@ -14,13 +14,16 @@ class ProdutoCompra
 
     private $compra;
 
-    public function __construct($id, $preco_custo, $qtde, Produto $produto, Compra $compra)
+    private $usuario;
+
+    public function __construct($id, $preco_custo, $qtde, Produto $produto, Compra $compra, Usuario $usuario)
     {
         $this->id = $id;
         $this->preco_custo = $preco_custo;
         $this->qtde = $qtde;
         $this->produto = $produto;
         $this->compra = $compra;
+        $this->usuario = $usuario;
     }
 
 
@@ -121,6 +124,26 @@ class ProdutoCompra
     public function setQtde($qtde)
     {
         $this->qtde = $qtde;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of usuario
+     */
+    public function getUsuairo()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * Set the value of usuario
+     *
+     * @return  self
+     */
+    public function setUsuairo(Usuario $usuario)
+    {
+        $this->usuario = $usuario;
 
         return $this;
     }

@@ -5,21 +5,19 @@ class Compra
 {
     private $id;
     private $dt_hora;
-    private $usuario;
 
-    public function __construct($id, $dt_hora, Usuario $usuario)
+    public function __construct($id, $dt_hora)
     {
         $this->id = $id;
         $this->dt_hora = $dt_hora;
-        $this->usuario;
     }
 
-    public function getNome()
+    public function getDataHora()
     {
         return $this->dt_hora;
     }
 
-    public function setNome($dt_hora)
+    public function setDataHora($dt_hora)
     {
         $this->dt_hora = $dt_hora;
         return $this;
@@ -42,26 +40,6 @@ class Compra
     public function setId($id)
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of usuario
-     */
-    public function getUsuario()
-    {
-        return $this->usuario;
-    }
-
-    /**
-     * Set the value of usuario
-     *
-     * @return  self
-     */
-    public function setUsuario(Usuario $usuario)
-    {
-        $this->usuario = $usuario;
 
         return $this;
     }

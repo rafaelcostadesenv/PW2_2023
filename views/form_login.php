@@ -4,17 +4,15 @@
 
     // Inicia a sessão
     session_start();
-    
     if(isset($_POST["usuario"]) && isset($_POST["senha"])) {
 		$usuarioController = new UsuarioController();
-		$usuario = $usuarioController->login($_POST["usuario"], $_POST["senha"]);
-		if($usuario != null){
-			$_SESSION["usuario"] = $usuario->getNome;
-        	header("Location: ../index.php");
-		}
-        
-    }
-
+		$usuarioController->login($_POST["usuario"], $_POST["senha"]);
+	}
+	if (isset($_SESSION['mensagem'])) {
+		echo "<script>alert('" . $_SESSION['mensagem'] . "')</script>";
+		unset($_SESSION['mensagem']); // Limpar a variável de sessão após exibir o alerta
+	}
+	
 ?>
 
 <!DOCTYPE html>

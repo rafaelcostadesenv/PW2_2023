@@ -1,6 +1,6 @@
 <?php
-require_once "../models/Usuario.php";
-require_once "../models/Conexao.php";
+require_once "C:/xampp/htdocs/pw2_2023-master/models/Usuario.php";
+require_once "C:/xampp/htdocs/pw2_2023-master/models/Conexao.php";
 
 class UsuarioController
 {
@@ -22,21 +22,23 @@ class UsuarioController
             if (password_verify($senha, $usuario['senha'])) {
                 // Credenciais válidas, definir o nome do usuário na sessão
                 session_start();
-                $_SESSION["usuario"] = $login;
+                $_SESSION["id_usuario"] = $usuario['id'];
+                $_SESSION["nome_usuario"] = $usuario['nome'];
+                $_SESSION["login_usuario"] = $usuario['login'];
 
                 // Redirecionar para a página inicial
                 header("Location: ../index.php");
                 exit();
             } else {
                 // Senha inválida
-                echo "Senha inválida. Por favor, tente novamente.";
+                $_SESSION["menssagem"] = "Senha inválida. Por favor, tente novamente.";
             }
         } else {
             // Usuário não encontrado
-            echo "Usuário não encontrado. Por favor, tente novamente.";
+            $_SESSION["menssagem"] =  "Usuário não encontrado. Por favor, tente novamente.";
         }
     } catch (PDOException $e) {
-        echo "Erro ao realizar o login: " . $e->getMessage();
+        $_SESSION["menssagem"] =  "Erro ao realizar o login: " . $e->getMessage();
     }
 }
 
@@ -92,32 +94,25 @@ class UsuarioController
 
     public function update(Usuario $usuario)
 {
-    // Implemente a lógica para atualizar um usuário no banco de dados
-    $conexao = Conexao::getInstance();
+    try {
+        $conexao = Conexao::getInstance();
 
-    $stmt = $conexao->prepare("UPDATE usuario SET nome = :nome, login = :login, senha = :senha WHERE id = :id");
+        $stmt = $conexao->prepare("UPDATE usuario SET nome = :nome, usuario = :usuario, senha = :senha WHERE id = :id");
 
-    $stmt->bindParam(":nome", $usuario->getNome());
-    $stmt->bindParam(":login", $usuario->getLogin());
-    
-    // Verifique se a senha foi fornecida antes de atualizá-la
-    if (!empty($usuario->getSenha())) {
-        $senhaCriptografada = password_hash($usuario->getSenha(), PASSWORD_DEFAULT);
-        $stmt->bindParam(":senha", $senhaCriptografada);
-    } else {
-        // Mantenha a senha existente se não for fornecida uma nova senha
-        $senhaAtual = $this->findById($usuario->getId())->getSenha();
-        $stmt->bindParam(":senha", $senhaAtual);
+        $stmt->bindParam(":nome", $usuario->getNome());
+        $stmt->bindParam(":usuario", $usuario->getLogin());
+        $stmt->bindParam(":senha", $usuario->getSenha());
+        $stmt->bindParam(":id", $usuario->getId());
+
+        $stmt->execute();
+
+        return $this->findById($usuario->getId());
+    } catch (PDOException $e) {
+        echo "Erro ao atualizar o usuário: " . $e->getMessage();
     }
-
-    $stmt->bindParam(":id", $usuario->getId());
-
-    $stmt->execute();
-
-    $usuarioAtualizado = $this->findById($usuario->getId());
-
-    return $usuarioAtualizado;
 }
+
+
 
 
     public function delete(Usuario $usuario)

@@ -17,9 +17,24 @@
 						<a class="nav-link active" aria-current="page" href="?pg=marcas">Marcas</a>
 					</li>
 				</ul>
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="?pg=compras">Compras</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="?pg=vendas">Vendas</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="?pg=usuarios">Lista de Usuarios</a>
+					</li>
+				</ul>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <?php if(isset($_SESSION["usuario"])) { echo "<p class='p-2'>Seja bem vindo <b>". $_SESSION["usuario"] . "</b> </p>"; ?>
+                        <?php if(isset($_SESSION["nome_usuario"])) { echo "<p class='p-2'>Seja bem vindo <b>". $_SESSION["nome_usuario"] . "</b> </p>"; ?>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="?pg=logout">Sair</a>
