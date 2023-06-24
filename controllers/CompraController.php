@@ -67,7 +67,7 @@ class CompraController
             $conexao = Conexao::getInstance();
 
             // Excluir os produtos relacionados -> Faz o efeito cascata para não dar erro de chave estrangeira
-            $stmtProdutos = $conexao->prepare("SELECT * FROM produto WHERE id_compra = :id");
+            $stmtProdutos = $conexao->prepare("SELECT * FROM produto_compra WHERE id_compra = :id");
             $stmtProdutos->bindParam(":id", $id);
             $stmtProdutos->execute();
 
@@ -78,6 +78,7 @@ class CompraController
 
             if ($stmtCompra->rowCount() > 0) {
                 $_SESSION['mensagem'] = 'Compra excluída com sucesso!';
+
                 return true;
             } else {
                 $_SESSION['mensagem'] = 'A compra não foi encontrada.';
@@ -87,6 +88,7 @@ class CompraController
             $_SESSION['mensagem'] = 'Erro ao excluir a compra: ' . $e->getMessage();
             return false;
         }
+
     }
     public function findById($id)
     {

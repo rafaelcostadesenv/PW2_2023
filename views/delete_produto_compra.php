@@ -6,6 +6,8 @@ if (isset($_GET["id"])) {
     $produtoController = new ProdutoCompraController();
     $produtoController->delete($_GET["id"]);
 
-    // Voltando pra tela anterior
-    header("Location: ?pg=form_compra");
+
+    // Voltando para a tela anterior
+    header("Location: ?pg=compras");
+    exit();
 }
