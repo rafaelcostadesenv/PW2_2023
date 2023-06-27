@@ -6,27 +6,25 @@ class ProdutoVenda
 {
     private $id;
 
-    private $qtde;
-
     private $valor_unitario;
 
-    private $valor_total;
+    private $qtde;
 
     private $produto;
 
     private $venda;
 
-    public function __construct($id, $qtde, Produto $produto, Venda $venda, $valor_unitario, $valor_total)
+    private $usuario;
+
+    public function __construct($id, $valor_unitario, $qtde, Produto $produto, Venda $venda, Usuario $usuario)
     {
         $this->id = $id;
         $this->valor_unitario = $valor_unitario;
-        $this->valor_total = $valor_total;
         $this->qtde = $qtde;
         $this->produto = $produto;
         $this->venda = $venda;
+        $this->usuario = $usuario;
     }
-
-
 
     /**
      * Get the value of id
@@ -91,22 +89,7 @@ class ProdutoVenda
     /**
      * Get the value of valor_unitario
      */
-    public function getPrecoUnitario()
-    {
-        return $this->valor_unitario;
-    }
-
-    /**
-     * Set the value of valor_unitario
-     *
-     * @return  self
-     */
-    public function setPrecoUnitario($valor_unitario)
-    {
-        $this->valor_unitario = $valor_unitario;
-
-        return $this;
-    }
+    
 
     /**
      * Get the value of qtde
@@ -129,22 +112,38 @@ class ProdutoVenda
     }
 
     /**
-     * Get the value of valor_total
+     * Get the value of usuario
      */
-    public function getValorTotal()
+    public function getUsuairo()
     {
-        return $this->valor_total;
+        return $this->usuario;
     }
 
     /**
-     * Set the value of valor_total
+     * Set the value of usuario
      *
      * @return  self
      */
-    public function setValorTotal($valor_total)
+    public function setUsuairo(Usuario $usuario)
     {
-        $this->valor_total = $valor_total;
+        $this->usuario = $usuario;
 
         return $this;
     }
+
+	/**
+	 * @return mixed
+	 */
+	public function getValor_unitario() {
+		return $this->valor_unitario;
+	}
+	
+	/**
+	 * @param mixed $valor_unitario 
+	 * @return self
+	 */
+	public function setValor_unitario($valor_unitario): self {
+		$this->valor_unitario = $valor_unitario;
+		return $this;
+	}
 }

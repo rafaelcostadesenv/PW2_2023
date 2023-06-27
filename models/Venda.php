@@ -12,17 +12,16 @@ class Venda
         $this->dt_hora = $dt_hora;
     }
 
-    public function getNome()
+    public function getDataHora()
     {
         return $this->dt_hora;
     }
 
-    public function setNome($dt_hora)
+    public function setDataHora($dt_hora)
     {
         $this->dt_hora = $dt_hora;
         return $this;
     }
-
 
     /**
      * Get the value of id

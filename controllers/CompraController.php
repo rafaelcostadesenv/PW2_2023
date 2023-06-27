@@ -33,7 +33,7 @@ class CompraController
         $stmt->execute();
 
         $compra = $this->findById($conexao->lastInsertId());
-
+        var_dump($compra->getId());
         // // Após salvar a compra, vou salvar os itens relacionando com a compra
         // $produtoCompraController = new ProdutoCompraController();
         // foreach ($produtos as $produtoCompra) :
@@ -51,7 +51,7 @@ class CompraController
 
             $stmt = $conexao->prepare("UPDATE compra SET nome = :nome WHERE id = :id");
 
-            // $stmt->bindParam(":nome", $compra->getNome());
+            
             $stmt->bindParam(":id", $compra->getId());
 
             $stmt->execute();
@@ -67,7 +67,7 @@ class CompraController
             $conexao = Conexao::getInstance();
 
             // Excluir os produtos relacionados -> Faz o efeito cascata para não dar erro de chave estrangeira
-            $stmtProdutos = $conexao->prepare("SELECT * FROM produto_compra WHERE id_compra = :id");
+            $stmtProdutos = $conexao->prepare("DELETE FROM produto_compra WHERE id_compra = :id");
             $stmtProdutos->bindParam(":id", $id);
             $stmtProdutos->execute();
 
