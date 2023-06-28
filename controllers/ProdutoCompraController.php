@@ -40,11 +40,11 @@ class ProdutoCompraController
 
         $stmt = $conexao->prepare("INSERT INTO produto_compra (id_usuario, id_produto, id_compra, qtde, preco_custo) VALUES (:id_usuario, :id_produto, :id_compra, :qtde, :preco_custo)");
         $id_usuario = $_SESSION["id_usuario"];
-        $id_produto = $produtoCompra->getProduto()->getId();
+        $id_produto =
+            $produtoCompra->getProduto()->getId();
         $id_compra = $produtoCompra->getCompra()->getId();
         $qtde = $produtoCompra->getQtde();
         $preco_custo = $produtoCompra->getPrecoCusto();
-        
         $stmt->bindParam(":id_usuario", $id_usuario);
         $stmt->bindParam(":id_produto", $id_produto);
         $stmt->bindParam(":id_compra", $id_compra);
@@ -100,8 +100,6 @@ class ProdutoCompraController
             return false;
         }
     }
-
-
     public function findById($id)
     {
         try {

@@ -26,6 +26,8 @@ class ProdutoCompra
         $this->usuario = $usuario;
     }
 
+
+
     /**
      * Get the value of id
      */

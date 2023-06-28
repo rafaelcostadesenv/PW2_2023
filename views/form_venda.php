@@ -7,13 +7,20 @@ require_once "models/ProdutoVenda.php";
 require_once "models/Produto.php";
 
 
+if (isset($_SESSION['mensagem'])) {
+	echo "<script>alert('" . $_SESSION['mensagem'] . "')</script>";
+	unset($_SESSION['mensagem']); // Limpar a variável de sessão após exibir o alerta
+}
+
 if (isset($_POST["finalizarVenda"])) {
 	unset($_SESSION["venda_id"]);
 	header("Location: ?pg=vendas");
 	exit();
 }
 
-if (!isset($_SESSION['venda_id'])) {
+if (isset($_GET['id'])) {
+	$_SESSION['venda_id'] = $_GET['id'];
+}if (!isset($_SESSION['venda_id'])) {
 	$vendaController = new VendaController();
 	$venda = new Venda(null, null);
 	$venda = $vendaController->save();
@@ -31,10 +38,11 @@ if (isset($_POST['adicionarProduto'])) {
 	$produto = $produtoController->findById($_POST['produto']);
 	$venda = $vendaController->findById($_SESSION["venda_id"]);
 	$quantidade = $_POST['qtde'];
-	$precoCusto = $_POST['valor_unitario'];
+	$valor_unitario = $_POST['valor_unitario'];
+	
 
 	// Criar uma nova instância de ProdutoVenda
-	$produtoVenda = new ProdutoVenda(null, $precoCusto, $quantidade, $produto, $venda, $usuario);
+	$produtoVenda = new ProdutoVenda(null, $valor_unitario, $valor_total, $quantidade, $produto, $venda, $usuario);
 
 	$produtoVendaController->save($produtoVenda);
 }

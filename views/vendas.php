@@ -41,7 +41,7 @@ if (isset($_SESSION['mensagem'])) {
                     <?php foreach ($vendas as $venda) : ?>
                         <tr>
                             <td><?php echo htmlspecialchars($venda->getId()); ?></td>
-                            <td><?php echo htmlspecialchars($venda->getDataHora()); ?></td>
+                            <td><?php echo htmlspecialchars($venda->getNome()); ?></td>
                             <td>
                                 <a class="" href="?pg=form_venda&id=<?php echo $venda->getId(); ?>">
                                     <i class="fas fa-eye"></i></a>

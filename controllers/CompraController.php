@@ -33,7 +33,7 @@ class CompraController
         $stmt->execute();
 
         $compra = $this->findById($conexao->lastInsertId());
-        var_dump($compra->getId());
+
         // // Após salvar a compra, vou salvar os itens relacionando com a compra
         // $produtoCompraController = new ProdutoCompraController();
         // foreach ($produtos as $produtoCompra) :
@@ -51,7 +51,7 @@ class CompraController
 
             $stmt = $conexao->prepare("UPDATE compra SET nome = :nome WHERE id = :id");
 
-            
+            // $stmt->bindParam(":nome", $compra->getNome());
             $stmt->bindParam(":id", $compra->getId());
 
             $stmt->execute();
@@ -78,7 +78,6 @@ class CompraController
 
             if ($stmtCompra->rowCount() > 0) {
                 $_SESSION['mensagem'] = 'Compra excluída com sucesso!';
-
                 return true;
             } else {
                 $_SESSION['mensagem'] = 'A compra não foi encontrada.';
@@ -88,7 +87,6 @@ class CompraController
             $_SESSION['mensagem'] = 'Erro ao excluir a compra: ' . $e->getMessage();
             return false;
         }
-
     }
     public function findById($id)
     {

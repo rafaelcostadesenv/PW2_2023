@@ -1,6 +1,6 @@
 <?php
-require_once "C:/xampp/htdocs/pw2_2023-master/controllers/CategoriaController.php";
 include_once("restrict.php");
+require_once "controllers/CategoriaController.php";
 // Inicia a sessão
 if (isset($_GET["id"])) {
 	$categoriaController = new CategoriaController();

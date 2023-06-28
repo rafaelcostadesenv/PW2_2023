@@ -3,16 +3,6 @@ include_once("restrict.php");
 require_once "controllers/CompraController.php";
 
 $controller = new CompraController();
-
-// Verificar se o parâmetro "id" está presente na URL
-if (isset($_GET['id'])) {
-    $idCompra = $_GET['id'];
-    $controller->delete($idCompra); // Chamar o método de exclusão da compra no controlador
-    $_SESSION['mensagem'] = "Compra excluída com sucesso."; // Definir mensagem de sucesso
-    header("Location: index.php"); // Redirecionar para a página principal após a exclusão
-    exit;
-}
-
 $compras = $controller->findAll();
 
 // Verificar se existe uma mensagem definida na sessão

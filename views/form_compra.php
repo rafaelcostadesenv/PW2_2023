@@ -6,6 +6,10 @@ require_once "controllers/ProdutoCompraController.php";
 require_once "models/ProdutoCompra.php";
 require_once "models/Produto.php";
 
+if (isset($_SESSION['mensagem'])) {
+	echo "<script>alert('" . $_SESSION['mensagem'] . "')</script>";
+	unset($_SESSION['mensagem']); // Limpar a variável de sessão após exibir o alerta
+}
 
 if (isset($_POST["finalizarCompra"])) {
 	unset($_SESSION["compra_id"]);
@@ -13,7 +17,10 @@ if (isset($_POST["finalizarCompra"])) {
 	exit();
 }
 
-if (!isset($_SESSION['compra_id'])) {
+
+if (isset($_GET['id'])) {
+	$_SESSION['compra_id'] = $_GET['id'];
+} else {
 	$compraController = new CompraController();
 	$compra = new Compra(null, null);
 	$compra = $compraController->save();
@@ -40,7 +47,6 @@ if (isset($_POST['adicionarProduto'])) {
 }
 
 $produtosCompra = $produtoCompraController->findAll($_SESSION["compra_id"]);
-
 
 ?>
 
@@ -101,22 +107,18 @@ $produtosCompra = $produtoCompraController->findAll($_SESSION["compra_id"]);
 					</tr>
 				</thead>
 				<tbody>
-				<?php foreach ($produtosCompra as $key => $produtoCompra) : ?>
+					<?php foreach ($produtosCompra as $key => $produtoCompra) : ?>
 						<tr>
 							<td><?php echo htmlspecialchars($produtoCompra->getProduto()->getNome()); ?></td>
 							<td><?php echo htmlspecialchars($produtoCompra->getProduto()->getNome()); ?></td>
 							<td><?php echo number_format($produtoCompra->getQtde(), 2, ',', '.'); ?></td>
 							<td><?php echo "R\$ " . number_format($produtoCompra->getPrecoCusto(), 2, ',', '.'); ?></td>
 							<td>
-								<form action="delete_produto_compra.php" method="post">
-									<input type="hidden" name="id" value="<?php echo $produtoCompra->getId(); ?>">
-									<button type="submit" onclick="return confirm('Tem certeza que deseja excluir este produto?')">
-										<i class="fas fa-trash-alt"></i>
-									</button>
-								</form>
+								<a class="" href="?pg=delete_produto_compra&id=<?php echo $produtoCompra->getId(); ?>" onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+									<i class="fas fa-trash-alt"></i></a>
 							</td>
 						</tr>
-				<?php endforeach; ?>
+					<?php endforeach; ?>
 				</tbody>
 			</table>
 		</div>

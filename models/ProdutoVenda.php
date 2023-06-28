@@ -6,9 +6,11 @@ class ProdutoVenda
 {
     private $id;
 
+    private $qtde;
+
     private $valor_unitario;
 
-    private $qtde;
+    private $valor_total;
 
     private $produto;
 
@@ -16,15 +18,18 @@ class ProdutoVenda
 
     private $usuario;
 
-    public function __construct($id, $valor_unitario, $qtde, Produto $produto, Venda $venda, Usuario $usuario)
+    public function __construct($id, $valor_unitario, $valor_total, $qtde, Produto $produto, Venda $venda, Usuario $usuario)
     {
         $this->id = $id;
         $this->valor_unitario = $valor_unitario;
+        $this->valor_total = $valor_total;
         $this->qtde = $qtde;
         $this->produto = $produto;
         $this->venda = $venda;
         $this->usuario = $usuario;
     }
+
+
 
     /**
      * Get the value of id
@@ -89,7 +94,22 @@ class ProdutoVenda
     /**
      * Get the value of valor_unitario
      */
-    
+    public function getPrecoUnitario()
+    {
+        return $this->valor_unitario;
+    }
+
+    /**
+     * Set the value of valor_unitario
+     *
+     * @return  self
+     */
+    public function setPrecoUnitario($valor_unitario)
+    {
+        $this->valor_unitario = $valor_unitario;
+
+        return $this;
+    }
 
     /**
      * Get the value of qtde
@@ -112,38 +132,42 @@ class ProdutoVenda
     }
 
     /**
-     * Get the value of usuario
+     * Get the value of valor_total
      */
-    public function getUsuairo()
+    public function getValorTotal()
+    {
+        return $this->valor_total;
+    }
+
+    /**
+     * Set the value of valor_total
+     *
+     * @return  self
+     */
+    public function setValorTotal($valor_total)
+    {
+        $this->valor_total = $valor_total;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of valor_total
+     */
+    public function getUsuario()
     {
         return $this->usuario;
     }
 
     /**
-     * Set the value of usuario
+     * Set the value of valor_total
      *
      * @return  self
      */
-    public function setUsuairo(Usuario $usuario)
+    public function setUsuario( Usuario $usuario)
     {
         $this->usuario = $usuario;
 
         return $this;
     }
-
-	/**
-	 * @return mixed
-	 */
-	public function getValor_unitario() {
-		return $this->valor_unitario;
-	}
-	
-	/**
-	 * @param mixed $valor_unitario 
-	 * @return self
-	 */
-	public function setValor_unitario($valor_unitario): self {
-		$this->valor_unitario = $valor_unitario;
-		return $this;
-	}
 }

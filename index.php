@@ -1,9 +1,6 @@
 <?php
-include_once("C:/xampp/htdocs/pw2_2023-master/views/restrict.php");
 // Inicia a sessão
-if (session_status() != PHP_SESSION_ACTIVE) {
-    session_start();
-}
+session_start();
 ?>
 
 <!DOCTYPE html>

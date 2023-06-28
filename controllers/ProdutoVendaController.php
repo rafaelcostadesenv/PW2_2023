@@ -27,7 +27,7 @@ class ProdutoVendaController
         while ($produtoVenda = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $produto = $produtoController->findById($produtoVenda["id_produto"]);
             $venda = $vendaController->findById($produtoVenda["id_venda"]);
-            $produtoVenda = new ProdutoVenda($produtoVenda["id"], $produtoVenda["valor_unitario"], $produtoVenda["qtde"], $produto, $venda, $usuario);
+            $produtoVenda = new ProdutoVenda($produtoVenda["id"], $produtoVenda["valor_unitario"], $produtoVenda["valor_total"], $produtoVenda["qtde"], $produto, $venda, $usuario);
             $produtoVendas[] = $produtoVenda;
         }
 
@@ -44,7 +44,7 @@ class ProdutoVendaController
             $produtoVenda->getProduto()->getId();
         $id_venda = $produtoVenda->getVenda()->getId();
         $qtde = $produtoVenda->getQtde();
-        $valor_unitario = $produtoVenda->getValor_unitario();
+        $valor_unitario = $produtoVenda->getPrecoUnitario();
         $stmt->bindParam(":id_usuario", $id_usuario);
         $stmt->bindParam(":id_produto", $id_produto);
         $stmt->bindParam(":id_venda", $id_venda);
@@ -121,7 +121,7 @@ class ProdutoVendaController
             $produto = $produtoController->findById($resultado["id_produto"]);
             $venda = $vendaController->findById($resultado["id_venda"]);
 
-            $produtoVenda = new ProdutoVenda($resultado["id"], $resultado["valor_unitario"], $resultado["qtde"], $produto, $venda, $usuario);
+            $produtoVenda = new ProdutoVenda($resultado["id"], $resultado["valor_unitario"], $resultado["valor_total"], $resultado["qtde"], $produto, $venda, $usuario);
 
 
             return $produtoVenda;

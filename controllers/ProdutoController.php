@@ -15,12 +15,13 @@ class ProdutoController
         $stmt->execute();
         $produtos = array();
 
+        $categoriaController = new CategoriaController();
+        $marcaController = new MarcaController();
+
         while ($produto = $stmt->fetch(PDO::FETCH_ASSOC)) {
             // Buscar Categoria da Composição
-            $categoriaController = new CategoriaController();
             $categoria = $categoriaController->findById($produto["id_categoria"]);
             // Buscar Marca da Composição
-            $marcaController = new MarcaController();
             $marca = $marcaController->findById($produto["id_marca"]);
             $produtos[] = new Produto($produto["id"], $produto["nome"], $produto["percentual_lucro"], $categoria, $marca);
         }
@@ -75,20 +76,20 @@ class ProdutoController
         try {
             $conexao = Conexao::getInstance();
 
-            // Excluir o Produto
+            // Excluir o produto
             $stmtProduto = $conexao->prepare("DELETE FROM produto WHERE id = :id");
             $stmtProduto->bindParam(":id", $id);
             $stmtProduto->execute();
 
             if ($stmtProduto->rowCount() > 0) {
-                $_SESSION['mensagem'] = 'Produto excluída com sucesso!';
+                $_SESSION['mensagem'] = 'Produto excluído com sucesso!';
                 return true;
             } else {
-                $_SESSION['mensagem'] = 'O produto não foi encontrada.';
+                $_SESSION['mensagem'] = 'O produto não foi encontrado.';
                 return false;
             }
         } catch (PDOException $e) {
-            $_SESSION['mensagem'] = 'Erro ao excluir o produto: ' . $e->getMessage();
+            $_SESSION['mensagem'] = 'Erro ao excluir a categoria: ' . $e->getMessage();
             return false;
         }
     }

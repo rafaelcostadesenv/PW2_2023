@@ -1,4 +1,5 @@
 <?php
+include_once("restrict.php");
 require_once "controllers/ProdutoController.php";
 
 $produto = null;
