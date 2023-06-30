@@ -129,4 +129,26 @@ class ProdutoCompraController
             echo "Erro ao buscar a produtoCompra: " . $e->getMessage();
         }
     }
+
+    public function buscaMediaByIdProduto($id)
+    {
+        try {
+            $conexao = Conexao::getInstance();
+
+            $stmt = $conexao->prepare("SELECT AVG(pc.preco_custo) AS media_preco_custo FROM produto_compra pc JOIN produto p ON pc.id_produto = :id");
+
+            $stmt->bindParam(":id", $id);
+
+            $stmt->execute();
+
+            $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $media_preco_custo = ($resultado["media_preco_custo"]);
+
+
+            return $media_preco_custo;
+        } catch (PDOException $e) {
+            echo "Erro ao buscar a produtoCompra: " . $e->getMessage();
+        }
+    }
 }

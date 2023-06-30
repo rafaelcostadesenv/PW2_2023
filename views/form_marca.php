@@ -1,7 +1,12 @@
 <?php
-include_once("restrict.php");
 require_once "controllers/MarcaController.php";
+include_once("restrict.php");
 // Inicia a sessão
+if (isset($_GET["id"])) {
+	$marcaController = new MarcaController();
+	$marca = $marcaController->findById($_GET["id"]);
+}
+
 if (
 	isset($_POST["nome"])
 ) {
@@ -10,8 +15,14 @@ if (
 	// Construindo o Marca
 	$marca = new Marca(null, $_POST["nome"]);
 
-	// Salvando o Marca
-	$marcaController->save($marca);
+	// Salvando ou Atualizando Marca
+	if (isset($_GET["id"])) {
+		$marca->setId($_GET["id"]);
+		$marcaController->update($marca);
+	} else {
+
+		$marcaController->save($marca);
+	}
 
 	// Voltando pra tela anterior
 	header("Location: ?pg=marcas");
@@ -28,7 +39,7 @@ if (
 
 		<div class="form-group">
 			<label for="nome">Nome</label>
-			<input type="text" class="form-control" id="nome" name="nome">
+			<input type="text" class="form-control" id="nome" name="nome" value="<?php echo isset($marca) ? $marca->getNome() : ''; ?>">
 		</div>
 		<input type="submit" class="btn btn-primary" id="salvar" name="salvar" value="Salvar">
 	</form>

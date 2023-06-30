@@ -67,7 +67,7 @@ class VendaController
             $conexao = Conexao::getInstance();
 
             // Excluir os produtos relacionados -> Faz o efeito cascata para não dar erro de chave estrangeira
-            $stmtProdutos = $conexao->prepare("SELECT * FROM produto WHERE id_venda = :id");
+            $stmtProdutos = $conexao->prepare("DELETE FROM produto_venda WHERE id_venda = :id");
             $stmtProdutos->bindParam(":id", $id);
             $stmtProdutos->execute();
 

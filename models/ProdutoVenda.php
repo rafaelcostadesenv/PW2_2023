@@ -18,7 +18,7 @@ class ProdutoVenda
 
     private $usuario;
 
-    public function __construct($id, $valor_unitario, $valor_total, $qtde, Produto $produto, Venda $venda, Usuario $usuario)
+    public function __construct($id, $qtde, Produto $produto, Venda $venda, $valor_unitario, $valor_total, Usuario $usuario)
     {
         $this->id = $id;
         $this->valor_unitario = $valor_unitario;
@@ -94,7 +94,7 @@ class ProdutoVenda
     /**
      * Get the value of valor_unitario
      */
-    public function getPrecoUnitario()
+    public function getValor_unitario()
     {
         return $this->valor_unitario;
     }
@@ -104,7 +104,7 @@ class ProdutoVenda
      *
      * @return  self
      */
-    public function setPrecoUnitario($valor_unitario)
+    public function setValor_unitario($valor_unitario)
     {
         $this->valor_unitario = $valor_unitario;
 
@@ -151,9 +151,6 @@ class ProdutoVenda
         return $this;
     }
 
-    /**
-     * Get the value of valor_total
-     */
     public function getUsuario()
     {
         return $this->usuario;
@@ -164,7 +161,7 @@ class ProdutoVenda
      *
      * @return  self
      */
-    public function setUsuario( Usuario $usuario)
+    public function setUsuario(Usuario $usuario)
     {
         $this->usuario = $usuario;
 

@@ -18,6 +18,7 @@ $marcas = $controller->findAll();
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,12 @@ $marcas = $controller->findAll();
                         <tr>
                             <td><?php echo htmlspecialchars($marca->getId()); ?></td>
                             <td><?php echo htmlspecialchars($marca->getNome()); ?></td>
+                            <td>
+                                <a class="" href="?pg=form_marca&id=<?php echo $marca->getId(); ?>">
+                                    <i class="fas fa-eye"></i></a>
+                                <a class="" href="?pg=delete_marca&id=<?php echo $marca->getId(); ?>" onclick="return confirm('Tem certeza que deseja excluir esta marca?')">
+                                    <i class="fas fa-trash-alt"></i></a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

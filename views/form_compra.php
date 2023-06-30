@@ -109,7 +109,7 @@ $produtosCompra = $produtoCompraController->findAll($_SESSION["compra_id"]);
 				<tbody>
 					<?php foreach ($produtosCompra as $key => $produtoCompra) : ?>
 						<tr>
-							<td><?php echo htmlspecialchars($produtoCompra->getProduto()->getNome()); ?></td>
+							<td><?php echo htmlspecialchars($produtoCompra->getProduto()->getId()); ?></td>
 							<td><?php echo htmlspecialchars($produtoCompra->getProduto()->getNome()); ?></td>
 							<td><?php echo number_format($produtoCompra->getQtde(), 2, ',', '.'); ?></td>
 							<td><?php echo "R\$ " . number_format($produtoCompra->getPrecoCusto(), 2, ',', '.'); ?></td>
